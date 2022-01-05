@@ -21,7 +21,7 @@ namespace MyEmotionsApi.Controllers
         }
 
         [HttpPost("login")]
-        public ActionResult<AuthData> Post([FromBody] LoginViewModel model)
+        public ActionResult<AuthDataViewModel> Post([FromBody] LoginViewModel model)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
@@ -43,7 +43,7 @@ namespace MyEmotionsApi.Controllers
         }
 
         [HttpPost("register")]
-        public ActionResult<AuthData> Post([FromBody] RegisterViewModel model)
+        public ActionResult<AuthDataViewModel> Post([FromBody] RegisterViewModel model)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
 

@@ -1,6 +1,6 @@
 namespace MyEmotionsApi.ViewModels
 {
-    public class AuthData
+    public class AuthDataViewModel
     {
         public string Token { get; set; }
         public long TokenExpirationTime { get; set; }

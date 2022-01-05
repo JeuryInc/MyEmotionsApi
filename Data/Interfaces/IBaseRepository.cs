@@ -10,6 +10,7 @@ namespace MyEmotionsApi.Data.Interfaces
         void Delete(T entity);
         void DeleteWhere(Expression<Func<T, bool>> predicate);
         void Commit();
+        IEnumerable<T> GetAll();
         IEnumerable<T> AllIncluding(params Expression<Func<T, object>>[] includeProperties);
         T GetSingle(Expression<Func<T, bool>> predicate);
         T GetSingle(Expression<Func<T, bool>> predicate, params Expression<Func<T, object>>[] includeProperties);

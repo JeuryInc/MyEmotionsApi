@@ -18,7 +18,7 @@ namespace MyEmotionsApi.Services
             this.jwtSecret = jwtSecret;
             this.jwtLifespan = jwtLifespan;
         }
-        public AuthData GetAuthData(string id)
+        public AuthDataViewModel GetAuthData(string id)
         {
             var expirationTime = DateTime.UtcNow.AddSeconds(jwtLifespan);
 
@@ -38,7 +38,7 @@ namespace MyEmotionsApi.Services
             var tokenHandler = new JwtSecurityTokenHandler();
             var token = tokenHandler.WriteToken(tokenHandler.CreateToken(tokenDescriptor));
                         
-            return new AuthData{
+            return new AuthDataViewModel{
                 Token = token,
                 TokenExpirationTime = ((DateTimeOffset)expirationTime).ToUnixTimeSeconds(),
                 Id = id

@@ -12,7 +12,6 @@ using System.Linq;
 namespace MyEmotionsApi.Controllers
 {
     [Route("api/[controller]")]
-    [Authorize]
     [ApiController]
     public class EmotionController : ControllerBase
     {
@@ -56,7 +55,7 @@ namespace MyEmotionsApi.Controllers
                 if (string.IsNullOrWhiteSpace(tag))
                     return new List<EmotionViewModel>();
 
-                var emotions = _emotionRepository.AllIncluding(s => s.Owner).Where(x => x.Tags.FirstOrDefault().Contains(tag));
+                var emotions = _emotionRepository.AllIncluding(s => s.Owner).Where(x => x.Tags.Contains(tag));
 
                 return emotions.Select(_mapper.Map<EmotionViewModel>).ToList();
             }
@@ -91,10 +90,9 @@ namespace MyEmotionsApi.Controllers
 
             emotions.ForEach((e) =>
             {
-                var tag = e.Tags.FirstOrDefault();
-
-                if (tag != null)
-                    tags.AddRange(tag.Split(','));
+                if (e.Tags != null)
+                    foreach (var tag in e.Tags)
+                        tags.Add(tag);
             });
 
             var groups = tags.GroupBy(v => v).OrderByDescending(x => x.Count()).Take(20).Select(x => x.Key);
@@ -124,9 +122,9 @@ namespace MyEmotionsApi.Controllers
             }
 
             return new BadRequestResult();
-
         }
 
+        [Authorize]
         [HttpGet("GetEmotionsByUser")]
         public ActionResult<List<EmotionViewModel>> GetEmotionsByUser()
         {
@@ -136,13 +134,12 @@ namespace MyEmotionsApi.Controllers
             {
                 user = HttpContext.User.Identity.Name;
 
-                if (string.IsNullOrEmpty(user))  
-                    return new BadRequestResult();                 
+                if (string.IsNullOrEmpty(user))
+                    return new BadRequestResult();
 
-                var emotions = _emotionRepository.GetAll().Where(x => x.OwnerId == user).OrderByDescending(x => x.CreationTime).ToList();
+                var emotions = _emotionRepository.AllIncluding(s => s.Owner).Where(x => x.OwnerId == user).OrderByDescending(x => x.CreationTime).ToList();
 
                 return emotions.Select(_mapper.Map<EmotionViewModel>).ToList();
-
             }
             catch (Exception ex)
             {
@@ -152,6 +149,7 @@ namespace MyEmotionsApi.Controllers
             return new BadRequestResult();
         }
 
+        [Authorize]
         [HttpPost("Create")]
         public ActionResult<string> Post([FromBody] EmotionViewModel model)
         {
@@ -160,13 +158,14 @@ namespace MyEmotionsApi.Controllers
             var ownerId = HttpContext.User.Identity.Name;
             var creationTime = DateTime.UtcNow;
             var emotionId = Guid.NewGuid().ToString();
-            
+
             var emotion = new Emotion
             {
                 Id = emotionId,
                 Title = model.Title,
                 Content = model.Content,
                 Tags = model.Tags,
+                IsPublic = model.IsPublic,
                 CreationTime = creationTime,
                 OwnerId = ownerId
             };

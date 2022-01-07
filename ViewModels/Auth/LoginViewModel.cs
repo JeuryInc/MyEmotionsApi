@@ -4,8 +4,7 @@ namespace MyEmotionsApi.ViewModels
 {
     public class LoginViewModel
     {
-        [Required]
-        [EmailAddress]
+        [Required] 
         public string Username { get; set; }
 
         [Required]

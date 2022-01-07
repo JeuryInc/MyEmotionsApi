@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using MyEmotionsApi.Data;
@@ -58,6 +59,16 @@ namespace MyEmotionsApi
 
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IEmotionRepository, EmotionRepository>();
+            services.AddSingleton(sp => sp.GetRequiredService<ILoggerFactory>().CreateLogger("DefaultLogger"));
+
+            services.AddLogging(builder =>
+            {
+                builder.AddFilter("Microsoft", LogLevel.Warning);
+                builder.AddFilter("System", LogLevel.Warning);
+                builder.AddFilter("Program", LogLevel.Warning);
+                builder.AddConsole();
+                builder.AddEventLog();
+            });
 
             services.AddSingleton<IAuthService>(
                 new AuthService(

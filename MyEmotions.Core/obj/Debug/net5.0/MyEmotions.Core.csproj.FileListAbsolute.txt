@@ -1,0 +1,12 @@
+C:\Users\gdelacruz\source\repos\MyEmotionsApi\MyEmotions.Core\bin\Debug\net5.0\MyEmotions.Core.deps.json
+C:\Users\gdelacruz\source\repos\MyEmotionsApi\MyEmotions.Core\bin\Debug\net5.0\MyEmotions.Core.dll
+C:\Users\gdelacruz\source\repos\MyEmotionsApi\MyEmotions.Core\bin\Debug\net5.0\ref\MyEmotions.Core.dll
+C:\Users\gdelacruz\source\repos\MyEmotionsApi\MyEmotions.Core\bin\Debug\net5.0\MyEmotions.Core.pdb
+C:\Users\gdelacruz\source\repos\MyEmotionsApi\MyEmotions.Core\obj\Debug\net5.0\MyEmotions.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\gdelacruz\source\repos\MyEmotionsApi\MyEmotions.Core\obj\Debug\net5.0\MyEmotions.Core.AssemblyInfoInputs.cache
+C:\Users\gdelacruz\source\repos\MyEmotionsApi\MyEmotions.Core\obj\Debug\net5.0\MyEmotions.Core.AssemblyInfo.cs
+C:\Users\gdelacruz\source\repos\MyEmotionsApi\MyEmotions.Core\obj\Debug\net5.0\MyEmotions.Core.csproj.CoreCompileInputs.cache
+C:\Users\gdelacruz\source\repos\MyEmotionsApi\MyEmotions.Core\obj\Debug\net5.0\MyEmotions.Core.dll
+C:\Users\gdelacruz\source\repos\MyEmotionsApi\MyEmotions.Core\obj\Debug\net5.0\ref\MyEmotions.Core.dll
+C:\Users\gdelacruz\source\repos\MyEmotionsApi\MyEmotions.Core\obj\Debug\net5.0\MyEmotions.Core.pdb
+C:\Users\gdelacruz\source\repos\MyEmotionsApi\MyEmotions.Core\obj\Debug\net5.0\MyEmotions.Core.csproj.AssemblyReference.cache

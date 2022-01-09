@@ -50,7 +50,7 @@ namespace MyEmotionsApi.Controllers
 
             var usernameUniq = _userRepository.IsValidUsername(model.Username);
             
-            if (!usernameUniq) return BadRequest(new { username = "user with this email already exists" });
+            if (!usernameUniq) return BadRequest(new { username = "user with this username already exists" });
 
             var id = Guid.NewGuid().ToString();
             var user = new User

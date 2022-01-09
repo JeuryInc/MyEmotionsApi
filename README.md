@@ -40,8 +40,7 @@ Go to localhost:80 to access your application in a web browser.
 ## Running the app via VS
 
 Running the migrations:
-
-    dotnet ef migrations add InitialMigration --project MyEmotionsApi -s MyEmotionsApi    
+ 
     dotnet ef database update --project MyEmotions.Infrastructure -s MyEmotionsApi
 
 Running the aplication

@@ -37,7 +37,8 @@ namespace MyEmotions.Infrastructure.Configure
                     Title = "Oh man, today was a long work day.",
                     Content = @"I worked 12pm – 12am today and that was kind of super long. I didn’t have enough help for half of the day so I was stressed as fuck. I did have a great team though for the second half of the shift, so I was able to get my work done. I’ve been eating super bad and only once a day. I have to fix that somehow because my stomach hurts all day every day lately.  
                     I got a package in the mail today from anonymous…it was a coffee press!!!!! This morning Dave sent me a text that said “can you please get us a coffee press”,
-                    I was already at work so I said “of course” and when he got home he sent me a picture of the coffee press and said “wow that was fast”!I don’t know who got this gift for us but we are both super super grateful! THANK YOU!!!",
+                    I was already at work so I said “of course” and when he got home he sent me a picture of the coffee press and said “wow that was fast”!I don’t know who got this
+                    gift for us but we are both super super grateful! THANK YOU!!!",
                     Tags = new string[3] { "Long day", "Stress", "Surprise" },
                     CreationTime = DateTime.UtcNow,
                     IsPublic = true,

@@ -30,8 +30,7 @@ namespace MyEmotionsApi
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
-        {
-            services.AddCors();
+        { 
 
             // configure DI for application services
 
@@ -68,6 +67,15 @@ namespace MyEmotionsApi
                 builder.AddFilter("System", LogLevel.Warning);
                 builder.AddFilter("Program", LogLevel.Warning);
                 builder.AddConsole(); 
+            });
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                    builder => builder.AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyOrigin()
+                        .AllowAnyHeader());
             });
 
             services.AddSingleton<IAuthService>(
@@ -108,6 +116,8 @@ namespace MyEmotionsApi
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.UseCors("CorsPolicy");
 
             app.UseEndpoints(endpoints =>
             {

@@ -14,7 +14,7 @@ using MyEmotions.Core.Interfaces;
 using MyEmotions.Core.Interfaces.Repositories;
 using MyEmotions.Infrastructure.Data;
 using MyEmotions.Infrastructure.Repositories;
-using MyEmotionsApi.ViewModels.Mapping;
+using MyEmotionsApi.ViewModels.Mapping; 
 using System.Text;
 
 namespace MyEmotionsApi
@@ -67,8 +67,7 @@ namespace MyEmotionsApi
                 builder.AddFilter("Microsoft", LogLevel.Warning);
                 builder.AddFilter("System", LogLevel.Warning);
                 builder.AddFilter("Program", LogLevel.Warning);
-                builder.AddConsole();
-                builder.AddEventLog();
+                builder.AddConsole(); 
             });
 
             services.AddSingleton<IAuthService>(
@@ -82,11 +81,15 @@ namespace MyEmotionsApi
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "MyEmotionsApi", Version = "v1" });
             });
-        }
-
+        } 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            using (var scope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            {
+                scope.ServiceProvider.GetService<MyEmotionDbContext>().Database.Migrate();
+            }             
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
